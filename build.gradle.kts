@@ -47,6 +47,8 @@ repositories {
     maven("https://maven.ladysnake.org/releases")
     maven("https://maven.shedaniel.me/")
     maven("https://maven.terraformersmc.com/releases")
+
+    maven("https://api.modrinth.com/maven")
 }
 
 dependencies {
@@ -70,6 +72,8 @@ dependencies {
     modLocalRuntime("vazkii.patchouli:Patchouli:${project.property("minecraft_version")}-${project.property("patchouli_version")}-FABRIC")
     modLocalRuntime("at.petra-k.paucal:paucal-fabric-${project.property("minecraft_version")}:${project.property("paucal_version")}")
     modLocalRuntime(files("${rootProject.rootDir}/libs/serialization-hooks-0.4.99999.jar"))
+
+    modLocalRuntime("maven.modrinth:hexcassettes:1.1.4")
 }
 
 tasks.processResources {
