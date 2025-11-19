@@ -23,8 +23,8 @@ import net.minecraft.world.World
 import org.robbie.yaha.registry.YahaEntities
 import java.util.UUID
 
-const val ACCELERATION = 0.2
-const val DRAG = 0.7
+const val ACCELERATION = 0.1
+const val DRAG = 0.9
 const val MAX_AGE = 200
 
 class PaperPlaneEntity(
@@ -55,7 +55,7 @@ class PaperPlaneEntity(
         if (hitResult.type != HitResult.Type.MISS) onCollision(hitResult)
 
         // update position, rotation, and velocity
-        setRotationFromVelocity()
+        setRotationFromVelocity() // fixed version of ProjectileUtil.setRotationFromVelocity()
 
         val oldVelocity = velocity
         val accelDirection = getTarget()?.eyePos?.subtract(pos) ?: rotationVector
@@ -65,15 +65,16 @@ class PaperPlaneEntity(
 
         setPosition(pos.add(oldVelocity))
 
-        checkBlockCollision() // other minecraft projectiles seem to do both onCollision AND checkBlockCollision
+        checkBlockCollision() // other minecraft projectiles seem to call both onCollision AND checkBlockCollision
     }
 
     private fun setRotationFromVelocity() {
-        // ProjectileUtil.setRotationFromVelocity() is incorrect!!!
         if (velocity.lengthSquared() == 0.0) return
         yaw = (MathHelper.atan2(-velocity.x, velocity.z) * 180f / Math.PI).toFloat()
         pitch = (MathHelper.atan2(-velocity.y, velocity.horizontalLength()) * 180f / Math.PI).toFloat()
     }
+
+    override fun canHit(entity: Entity) = super.canHit(entity) && (entity !is PaperPlaneEntity || target != entity)
 
     override fun canHit() = true
 
@@ -93,10 +94,15 @@ class PaperPlaneEntity(
     }
 
     fun getTarget(): Entity? {
-        return target ?: if (targetUUID != null && world is ServerWorld) {
-            target = (world as ServerWorld).getEntity(targetUUID)
-            return target
-        } else null
+        // also updates the target accordingly if it is null or removed
+
+        target?.let {
+            if (it.isRemoved) setTarget(null)
+        } ?: if (targetUUID != null && world is ServerWorld) {
+            setTarget((world as ServerWorld).getEntity(targetUUID))
+        } else setTarget(null)
+
+        return target
     }
 
     fun setTarget(entity: Entity?) {

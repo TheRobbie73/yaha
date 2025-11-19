@@ -11,8 +11,6 @@ object YahaEntities {
     val PAPER_PLANE_ENTITY: EntityType<PaperPlaneEntity> = EntityType.Builder
         .create(::PaperPlaneEntity, SpawnGroup.MISC)
         .setDimensions(0.5f, 0.5f)
-        .maxTrackingRange(4)
-        .trackingTickInterval(20)
         .build(Yaha.MOD_ID + ":paper_plane")
 
     fun register() {
