@@ -17,9 +17,9 @@ import net.minecraft.sound.SoundEvents
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
 import net.minecraft.util.hit.HitResult
-import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
+import org.robbie.yaha.YahaUtils
 import org.robbie.yaha.registry.YahaEntities
 import java.util.UUID
 
@@ -40,7 +40,12 @@ class PaperPlaneEntity(
         this.owner = owner
         setTarget(target)
         setPosition(pos)
-        tick()
+
+        target ?: return
+        YahaUtils.pitchYawFromRotVec(target.pos.subtract(pos))?.let {
+            pitch = it.first
+            yaw = it.second
+        }
     }
 
     private var target: Entity? = null
@@ -56,27 +61,21 @@ class PaperPlaneEntity(
         if (hitResult.type != HitResult.Type.MISS) onCollision(hitResult)
 
         // update position, rotation, and velocity
-        setRotationFromVelocity() // fixed version of ProjectileUtil.setRotationFromVelocity()
+        YahaUtils.pitchYawFromRotVec(velocity)?.let {
+            pitch = it.first
+            yaw = it.second
+        }
 
-        val oldVelocity = velocity
+        setPosition(pos.add(velocity))
         val accelDirection = getTarget()?.eyePos?.subtract(pos) ?: rotationVector
         velocity = velocity
             .add(accelDirection.normalize().multiply(ACCELERATION))
             .multiply(DRAG)
 
-        setPosition(pos.add(oldVelocity))
-
         checkBlockCollision() // other minecraft projectiles seem to call both onCollision AND checkBlockCollision
     }
 
-    private fun setRotationFromVelocity() {
-        if (velocity.lengthSquared() == 0.0) return
-        yaw = (MathHelper.atan2(-velocity.x, velocity.z) * 180f / Math.PI).toFloat()
-        pitch = (MathHelper.atan2(-velocity.y, velocity.horizontalLength()) * 180f / Math.PI).toFloat()
-    }
-
     override fun canHit(entity: Entity) = super.canHit(entity) && (entity !is PaperPlaneEntity || target == entity)
-
     override fun canHit() = true
 
     override fun damage(source: DamageSource?, amount: Float): Boolean {
@@ -141,7 +140,7 @@ class PaperPlaneEntity(
 
     override fun readCustomDataFromNbt(nbt: NbtCompound?) {
         super.readCustomDataFromNbt(nbt)
-        if (nbt?.containsUuid("Target") ?: false) {
+        if (nbt?.containsUuid("Target") == true) {
             targetUUID = nbt.getUuid("Target")
             target = null
         }

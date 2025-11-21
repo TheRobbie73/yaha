@@ -4,8 +4,10 @@ import at.petrak.hexcasting.api.casting.ParticleSpray
 import at.petrak.hexcasting.api.casting.RenderedSpell
 import at.petrak.hexcasting.api.casting.castables.SpellAction
 import at.petrak.hexcasting.api.casting.eval.CastingEnvironment
+import at.petrak.hexcasting.api.casting.eval.vm.CastingImage
 import at.petrak.hexcasting.api.casting.getEntity
 import at.petrak.hexcasting.api.casting.getVec3
+import at.petrak.hexcasting.api.casting.iota.EntityIota
 import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.misc.MediaConstants
 import net.minecraft.entity.Entity
@@ -30,7 +32,8 @@ object OpPaperPlane : SpellAction {
     }
 
     private data class Spell(val pos: Vec3d, val entity: Entity) : RenderedSpell {
-        override fun cast(env: CastingEnvironment) {
+        override fun cast(env: CastingEnvironment) {}
+        override fun cast(env: CastingEnvironment, image: CastingImage): CastingImage {
             val plane = PaperPlaneEntity(
                 env.world,
                 env.castingEntity,
@@ -38,6 +41,7 @@ object OpPaperPlane : SpellAction {
                 pos
             )
             env.world.spawnEntity(plane)
+            return image.copy(stack = image.stack.toList().plus(EntityIota(plane)))
         }
     }
 }
