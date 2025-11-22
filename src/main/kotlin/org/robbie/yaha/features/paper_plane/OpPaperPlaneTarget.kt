@@ -16,7 +16,7 @@ object OpPaperPlaneTarget : ConstMediaAction {
     ): List<Iota> {
         val entity = args.getEntity(0, argc)
         val plane = entity as? PaperPlaneEntity
-            ?: throw MishapBadEntity.of(entity, "paper_plane")
+            ?: throw MishapBadEntity.of(entity, "yaha:paper_plane")
         env.assertEntityInRange(plane)
 
         return plane.getTarget().asActionResult

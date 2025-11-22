@@ -1,5 +1,7 @@
 {
-  "hexcasting.mishap.yaha:no_time_bomb": "Requires a time bomb.",
+  "hexcasting.mishap.bad_item.yaha:paper_plane": "a Paper Plane",
+  "hexcasting.mishap.yaha:no_time_bomb": "Requires a Time Bomb.",
+  "hexcasting.mishap.bad_block.yaha:sussifiable": "a block with a suspicious variant",
 
   "yaha.page.armaments.title": "Caster's Armaments",
   "yaha.page.armaments.0": "I've devised a set of media-borne weaponry to improve upon my offensive Hexes in flair, if not in power.",

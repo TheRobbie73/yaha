@@ -9,6 +9,7 @@ import net.minecraft.registry.Registry
 import org.robbie.yaha.Yaha
 import org.robbie.yaha.features.paper_plane.OpPaperPlane
 import org.robbie.yaha.features.paper_plane.OpPaperPlaneTarget
+import org.robbie.yaha.features.sussify.OpSussifyBlock
 import org.robbie.yaha.features.time_bomb.OpTimeBomb
 import org.robbie.yaha.features.time_bomb.OpTimeBombPos
 
@@ -18,6 +19,8 @@ object YahaActions {
         register("paper_plane_target", HexDir.NORTH_WEST, "wwqaqwwdedde", OpPaperPlaneTarget)
         register("time_bomb", HexDir.NORTH_WEST, "eewaqawee", OpTimeBomb)
         register("time_bomb_pos", HexDir.NORTH_WEST, "eewaqaweedd", OpTimeBombPos)
+
+        register("sussify_block", HexDir.EAST, "eqqqeawqwqwqwqwqw", OpSussifyBlock)
     }
 
     private fun register(name: String, startDir: HexDir, sig: String, action: Action) =
