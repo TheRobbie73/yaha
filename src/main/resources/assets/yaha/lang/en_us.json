@@ -1,0 +1,18 @@
+{
+  "hexcasting.mishap.yaha:no_time_bomb": "Requires a time bomb.",
+
+  "yaha.page.armaments.title": "Caster's Armaments",
+  "yaha.page.armaments.0": "I've devised a set of media-borne weaponry to improve upon my offensive Hexes in flair, if not in power.",
+  "hexcasting.action.yaha:paper_plane": "Conjure Paper Plane",
+  "yaha.page.paper_plane.summary": "Summons a projectile that slowly flies towards the given entity, dealing a heart of damage. Costs one $(l:items/amethyst)$(item)Amethyst Dust$(). Adds itself onto the stack.",
+  "yaha.page.paper_plane.0": "A sheet of media bearing the iota of an entity, folded like a paper plane. The embedded iota coerces the plane towards its target. With such fragile construction, it does not deal much damage and loses form after about 10 seconds. Planes can also be redirected, much like a fireball, and lose their target upon doing so.",
+  "yaha.page.paper_plane.1": "Normally, paper planes pass through one another. However, conjuring a plane with another as a target allows the first to collide with the second. Planes without a target fly in a straight path.",
+  "hexcasting.action.yaha:paper_plane_target": "Aima Purification",
+  "yaha.page.paper_plane_target.summary": "Returns the target of a paper plane, or null if it does not have one.",
+  "hexcasting.action.yaha:time_bomb": "Conjure Time Bomb",
+  "yaha.page.time_bomb.summary": "$(br)Summons a floating projectile that casts after a given duration. Costs one $(l:items/amethyst)$(item)Charged Amethyst$(), plus the media given to the bomb. Adds itself onto the stack.",
+  "yaha.page.time_bomb.0": "A hex wrapped in layers of media, quickly shedding upon detonation.$(br2)The required arguments are as follows:$(li)The position of the bomb$(li)A list of patterns to be cast by the bomb$(li)The amount of media in units of $(l:items/amethyst)$(item)Dust$() given to the bomb's cast$(li)The duration before casting, in ticks",
+  "yaha.page.time_bomb.1": "The bomb casts as the player that produced it, has an ambit of 8 blocks around it, and can be knocked back by attacks and other projectiles. The bomb entity still exists during its cast, which must be considered when dealing with $(l:patterns/entities)Zone Distillations$()",
+  "hexcasting.action.yaha:time_bomb_pos": "Kavruka Reflection",
+  "yaha.page.time_bomb_pos.summary": "Returns the position of the time bomb casting this pattern. Mishaps if not cast by a bomb."
+}

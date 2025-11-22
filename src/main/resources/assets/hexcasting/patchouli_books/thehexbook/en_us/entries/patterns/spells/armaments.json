@@ -1,0 +1,48 @@
+{
+  "name": "yaha.page.armaments.title",
+  "icon": "yaha:time_bomb",
+  "category": "hexcasting:patterns/spells",
+  "advancement": "hexcasting:root",
+  "pages": [
+    "yaha.page.armaments.0",
+    {
+      "type": "patchouli:empty"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:paper_plane",
+      "anchor": "yaha:paper_plane",
+      "input": "vector, entity",
+      "output": "entity",
+      "text": "yaha.page.paper_plane.summary"
+    },
+    "yaha.page.paper_plane.0",
+    "yaha.page.paper_plane.1",
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:paper_plane_target",
+      "anchor": "yaha:paper_plane_target",
+      "input": "entity",
+      "output": "entity | null",
+      "text": "yaha.page.paper_plane_target.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:time_bomb",
+      "anchor": "yaha:time_bomb",
+      "input": "vec, [pattern], num, num",
+      "output": "entity",
+      "text": "yaha.page.time_bomb.summary"
+    },
+    "yaha.page.time_bomb.0",
+    "yaha.page.time_bomb.1",
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:time_bomb_pos",
+      "anchor": "yaha:time_bomb_pos",
+      "input": "",
+      "output": "vector",
+      "text": "yaha.page.time_bomb_pos.summary"
+    }
+  ]
+}
