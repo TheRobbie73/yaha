@@ -1,9 +1,7 @@
 # TODO
 - Paper Plane
-  - custom damage source?
   - Magically Assured Destruction - Intercept a Paper Plane
 - spindle and pouch
-  - book page
   - custom tooltip
 - Sus Block
   - Sandy Sand - Bury sand in your sand for more sand per sand

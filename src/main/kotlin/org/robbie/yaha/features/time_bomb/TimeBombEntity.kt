@@ -14,6 +14,8 @@ import at.petrak.hexcasting.api.utils.hasLong
 import at.petrak.hexcasting.api.utils.putCompound
 import at.petrak.hexcasting.api.utils.putList
 import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityDimensions
+import net.minecraft.entity.EntityPose
 import net.minecraft.entity.EntityStatuses
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.damage.DamageSource
@@ -97,7 +99,7 @@ class TimeBombEntity(
 
             var castingImage = CastingImage()
             val castingVM = CastingVM(castingImage, env)
-            val clientView = castingVM.queueExecuteAndWrapIotas(hex, world as ServerWorld)
+            castingVM.queueExecuteAndWrapIotas(hex, world as ServerWorld)
         }
 
         playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 1.0f, 0.5f)
@@ -112,7 +114,7 @@ class TimeBombEntity(
                 ItemStack(Items.AMETHYST_BLOCK, 1)
             )
 
-            for (i in 0..7)
+            repeat(8) { // im only using this because the ide complains about unused var in for loop
                 world.addParticle(
                     particleParam,
                     x,
@@ -122,6 +124,7 @@ class TimeBombEntity(
                     world.random.nextDouble() - 0.5,
                     world.random.nextDouble() - 0.5
                 )
+            }
         }
     }
 
@@ -187,6 +190,6 @@ class TimeBombEntity(
     }
 
     override fun getDefaultItem() = YahaItems.TIME_BOMB
-
+    override fun getEyeHeight(pose: EntityPose?, dimensions: EntityDimensions?) = height / 2
     override fun hasNoGravity() = true
 }

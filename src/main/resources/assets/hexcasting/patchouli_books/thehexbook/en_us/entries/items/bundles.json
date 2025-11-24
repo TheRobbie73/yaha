@@ -1,0 +1,20 @@
+{
+  "name": "yaha.page.bundles.title",
+  "icon": "yaha:pouch",
+  "category": "hexcasting:items",
+  "advancement": "hexcasting:root",
+  "pages": [
+    "yaha.page.bundles.0",
+    {
+      "type": "patchouli:crafting",
+      "recipe": "yaha:spindle",
+      "text": "yaha.page.spindle.summary"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "yaha:pouch",
+      "text": "yaha.page.pouch.summary"
+    },
+    "yaha.page.bundles.1"
+  ]
+}

@@ -1,10 +1,11 @@
 package org.robbie.yaha.features.paper_plane
 
 import net.minecraft.entity.Entity
+import net.minecraft.entity.EntityDimensions
+import net.minecraft.entity.EntityPose
 import net.minecraft.entity.EntityStatuses
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.damage.DamageSource
-import net.minecraft.entity.damage.DamageTypes
 import net.minecraft.entity.projectile.ProjectileEntity
 import net.minecraft.entity.projectile.ProjectileUtil
 import net.minecraft.item.ItemStack
@@ -20,6 +21,7 @@ import net.minecraft.util.hit.HitResult
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 import org.robbie.yaha.YahaUtils
+import org.robbie.yaha.registry.YahaDamageTypes
 import org.robbie.yaha.registry.YahaEntities
 import java.util.UUID
 
@@ -67,7 +69,9 @@ class PaperPlaneEntity(
         }
 
         setPosition(pos.add(velocity))
-        val accelDirection = getTarget()?.eyePos?.subtract(pos) ?: rotationVector
+        val accelDirection = getTarget()?.let{
+            it.eyePos.add(it.velocity).subtract(pos)
+        } ?: rotationVector
         velocity = velocity
             .add(accelDirection.normalize().multiply(ACCELERATION))
             .multiply(DRAG)
@@ -115,7 +119,7 @@ class PaperPlaneEntity(
     }
 
     override fun onEntityHit(entityHitResult: EntityHitResult?) {
-        entityHitResult?.entity?.damage(world.damageSources.create(DamageTypes.ARROW, this, owner), 2f)
+        entityHitResult?.entity?.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
         shatter()
     }
 
@@ -129,7 +133,7 @@ class PaperPlaneEntity(
         if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
             // particles seem to work in here but not in shatter()
             val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
-            for (i in 0..7) world.addParticle(particleParam, x, y, z, 0.0, 0.0, 0.0)
+            repeat(8) { world.addParticle(particleParam, x, y, z, 0.0, 0.0, 0.0) }
         }
     }
 
@@ -146,6 +150,7 @@ class PaperPlaneEntity(
         }
     }
 
+    override fun getEyeHeight(pose: EntityPose?, dimensions: EntityDimensions?) = height / 2
     override fun hasNoGravity() = true
     override fun initDataTracker() {}
 }
