@@ -1,4 +1,4 @@
-package org.robbie.yaha.features.sussify
+package org.robbie.yaha.features.spells
 
 import at.petrak.hexcasting.api.casting.ParticleSpray
 import at.petrak.hexcasting.api.casting.RenderedSpell

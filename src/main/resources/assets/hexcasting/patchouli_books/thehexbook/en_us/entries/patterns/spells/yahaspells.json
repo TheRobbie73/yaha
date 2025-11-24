@@ -1,0 +1,16 @@
+{
+  "name": "yaha.page.spells.title",
+  "icon": "minecraft:suspicious_sand",
+  "category": "hexcasting:patterns/spells",
+  "advancement": "hexcasting:root",
+  "pages": [
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:sussify_block",
+      "anchor": "yaha:sussify_block",
+      "input": "vector, entity",
+      "output": "",
+      "text": "yaha.page.sussify_block.summary"
+    }
+  ]
+}

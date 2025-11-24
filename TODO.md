@@ -1,14 +1,15 @@
 # TODO
 - Paper Plane
   - custom damage source?
-  - advancement - collide with other plane
+  - Magically Assured Destruction - Intercept a Paper Plane
 - mantra purif ([pattern], pattern -> mantra)
-- spindle item; bundle of thought knots
-  - name lang
-- focal pouch; bundle of foci
-  - registry
-  - textures
-  - name lang
-- Sus Block
+- spindle and pouch
+  - crafting
   - book page
-  - advancement - sand in sand / gravel in gravel
+- Sus Block
+  - Sandy Sand - Bury sand in your sand for more sand per sand
+  - Gravelly Gravel - Jam-packed with essential minerals and minerals 
+- 'Pluck' - itemize thrown potion spell - vice versa
+  - book page, lang
+  - Bomb Defusal - itemize a time bomb - only a time bomb can itemize itself (hidden)
+  - Why Would You Eat That - Eat a Time Bomb. (hidden, after Bomb Defusal)

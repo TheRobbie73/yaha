@@ -1,6 +1,10 @@
 {
+  "item.yaha.time_bomb": "Disarmed Time Bomb",
+  "item.yaha.spindle": "Thought Knot Spindle",
+  "item.yaha.pouch": "Focal Pouch",
+
   "hexcasting.mishap.bad_item.yaha:paper_plane": "a Paper Plane",
-  "hexcasting.mishap.yaha:no_time_bomb": "Requires a Time Bomb.",
+  "hexcasting.mishap.yaha:no_time_bomb": "Must be cast by a Time Bomb.",
   "hexcasting.mishap.bad_block.yaha:sussifiable": "a block with a suspicious variant",
 
   "yaha.page.armaments.title": "Caster's Armaments",
@@ -16,5 +20,9 @@
   "yaha.page.time_bomb.0": "A hex wrapped in layers of media, quickly shedding upon detonation.$(br2)The required arguments are as follows:$(li)The position of the bomb$(li)A list of patterns to be cast by the bomb$(li)The amount of media in units of $(l:items/amethyst)$(item)Dust$() given to the bomb's cast$(li)The duration before casting, in ticks",
   "yaha.page.time_bomb.1": "The bomb casts as the player that produced it, has an ambit of 8 blocks around it, and can be knocked back by attacks and other projectiles. The bomb entity still exists during its cast, which must be considered when dealing with $(l:patterns/entities)Zone Distillations$()",
   "hexcasting.action.yaha:time_bomb_pos": "Kavruka Reflection",
-  "yaha.page.time_bomb_pos.summary": "Returns the position of the time bomb casting this pattern. Mishaps if not cast by a bomb."
+  "yaha.page.time_bomb_pos.summary": "Returns the position of the time bomb casting this pattern. Mishaps if not cast by a bomb.",
+
+  "yaha.page.spells.title": "Yaha Spells",
+  "hexcasting.action.yaha:sussify_block": "Bury Item",
+  "yaha.page.sussify_block.summary": "Buries the item entity into a sand or gravel block, forming suspicious sand/gravel."
 }
