@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "|": {
+      "item": "minecraft:amethyst_shard"
+    },
+    "o": {
+      "item": "minecraft:gold_nugget"
+    }
+  },
+  "pattern": [
+    "o",
+    "|"
+  ],
+  "result": {
+    "item": "yaha:spindle"
+  }
+}

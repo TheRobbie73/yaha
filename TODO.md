@@ -2,14 +2,14 @@
 - Paper Plane
   - custom damage source?
   - Magically Assured Destruction - Intercept a Paper Plane
-- mantra purif ([pattern], pattern -> mantra)
 - spindle and pouch
-  - crafting
   - book page
+  - custom tooltip
 - Sus Block
   - Sandy Sand - Bury sand in your sand for more sand per sand
   - Gravelly Gravel - Jam-packed with essential minerals and minerals 
-- 'Pluck' - itemize thrown potion spell - vice versa
-  - book page, lang
+- 'Pluck' - itemize thrown potion spell
   - Bomb Defusal - itemize a time bomb - only a time bomb can itemize itself (hidden)
   - Why Would You Eat That - Eat a Time Bomb. (hidden, after Bomb Defusal)
+- Pigment Blocks
+- Mantra Purification ([pattern], pattern -> mantra)

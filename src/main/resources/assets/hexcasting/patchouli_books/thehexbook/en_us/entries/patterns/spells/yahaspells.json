@@ -1,6 +1,6 @@
 {
   "name": "yaha.page.spells.title",
-  "icon": "minecraft:suspicious_sand",
+  "icon": "minecraft:pufferfish",
   "category": "hexcasting:patterns/spells",
   "advancement": "hexcasting:root",
   "pages": [
@@ -11,6 +11,14 @@
       "input": "vector, entity",
       "output": "",
       "text": "yaha.page.sussify_block.summary"
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:potion_to_item",
+      "anchor": "yaha:potion_to_item",
+      "input": "entity",
+      "output": "",
+      "text": "yaha.page.potion_to_item.summary"
     }
   ]
 }

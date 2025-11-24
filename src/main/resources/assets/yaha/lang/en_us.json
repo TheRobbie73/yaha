@@ -4,6 +4,7 @@
   "item.yaha.pouch": "Focal Pouch",
 
   "hexcasting.mishap.bad_item.yaha:paper_plane": "a Paper Plane",
+  "hexcasting.mishap.bad_item.yaha:potion": "a thrown potion",
   "hexcasting.mishap.yaha:no_time_bomb": "Must be cast by a Time Bomb.",
   "hexcasting.mishap.bad_block.yaha:sussifiable": "a block with a suspicious variant",
 
@@ -24,5 +25,7 @@
 
   "yaha.page.spells.title": "Yaha Spells",
   "hexcasting.action.yaha:sussify_block": "Bury Item",
-  "yaha.page.sussify_block.summary": "Buries the item entity into a sand or gravel block, forming suspicious sand/gravel."
+  "yaha.page.sussify_block.summary": "Buries the item entity into a sand or gravel block, forming suspicious sand/gravel. Costs an eighth of an $(l:items/amethyst)$(item)Amethyst Dust$().",
+  "hexcasting.action.yaha:potion_to_item": "Pluck",
+  "yaha.page.potion_to_item.summary": "Plucks a potion out of the air, turning it into an item entity. Costs one $(l:items/amethyst)$(item)Charged Amethyst$().$(br2)I do wonder... what would happen if a projectile were to cast this onto itself?"
 }

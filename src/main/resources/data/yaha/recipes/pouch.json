@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "U": {
+      "item": "minecraft:leather"
+    },
+    "*": {
+      "item": "hexcasting:thought_knot"
+    }
+  },
+  "pattern": [
+    "*",
+    "U"
+  ],
+  "result": {
+    "item": "yaha:pouch"
+  }
+}

@@ -49,6 +49,7 @@ repositories {
     maven("https://maven.terraformersmc.com/releases")
 
     maven("https://api.modrinth.com/maven")
+    maven("https://maven.terraformersmc.com/")
 }
 
 dependencies {
@@ -75,6 +76,7 @@ dependencies {
 
     // other mod testing
     modLocalRuntime("maven.modrinth:hexcassettes:1.1.4")
+    modLocalRuntime("dev.emi:emi-fabric:1.1.22+1.20.1")
 }
 
 tasks.processResources {

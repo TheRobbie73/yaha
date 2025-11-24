@@ -39,7 +39,7 @@ object OpPotionToItem : SpellAction {
 
         return SpellAction.Result(
             Spell(entity),
-            MediaConstants.SHARD_UNIT,
+            MediaConstants.CRYSTAL_UNIT,
             listOf(ParticleSpray.cloud(entity.pos, 1.0))
         )
     }
