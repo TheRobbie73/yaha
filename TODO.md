@@ -1,13 +1,9 @@
 # TODO
-- Paper Plane
-  - Magically Assured Destruction - Intercept a Paper Plane
 - spindle and pouch
   - custom tooltip
-- Sus Block
-  - Sandy Sand - Bury sand in your sand for more sand per sand
-  - Gravelly Gravel - Jam-packed with essential minerals and minerals 
-- 'Pluck' - itemize thrown potion spell
-  - Bomb Defusal - itemize a time bomb - only a time bomb can itemize itself (hidden)
-  - Why Would You Eat That - Eat a Time Bomb. (hidden, after Bomb Defusal)
-- Pigment Blocks
-- Mantra Purification ([pattern], pattern -> mantra)
+  - that one shulker box mod interop
+
+
+# Ideas
+- Pigment Blocks (could just be a hexical pr)
+- Mantra Purification ([pattern], pattern -> mantra) (on one hand its just a listiota wrapper on the other hand "Yet Another Hex Abbreviator" pun)

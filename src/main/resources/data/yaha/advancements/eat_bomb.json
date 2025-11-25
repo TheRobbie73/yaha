@@ -1,0 +1,28 @@
+{
+  "parent": "yaha:bomb_defusal",
+  "display": {
+    "icon": {
+      "item": "yaha:time_bomb"
+    },
+    "title": {
+      "translate": "advancements.yaha.eat_bomb.title"
+    },
+    "description": {
+      "translate": "advancements.yaha.eat_bomb.description"
+    },
+    "frame": "challenge",
+    "hidden": true
+  },
+  "criteria": {
+    "eat_bomb": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "items": [
+            "yaha:time_bomb"
+          ]
+        }
+      }
+    }
+  }
+}

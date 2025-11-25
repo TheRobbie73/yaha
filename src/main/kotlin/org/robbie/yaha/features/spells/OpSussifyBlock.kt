@@ -14,11 +14,13 @@ import net.minecraft.block.Block
 import net.minecraft.block.Blocks
 import net.minecraft.command.argument.BlockStateArgument
 import net.minecraft.entity.ItemEntity
+import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.state.property.Property
 import net.minecraft.util.math.BlockPos
+import org.robbie.yaha.registry.YahaCriteria
 
 object OpSussifyBlock : SpellAction {
     override val argc = 2
@@ -38,6 +40,9 @@ object OpSussifyBlock : SpellAction {
             Blocks.GRAVEL -> Blocks.SUSPICIOUS_GRAVEL
             else -> throw MishapBadBlock.of(pos, "yaha:sussifiable")
         }
+
+        if (item.stack.item == block.asItem() && env.castingEntity is ServerPlayerEntity)
+            YahaCriteria.SUSCEPTION.trigger(env.castingEntity as ServerPlayerEntity)
 
         return SpellAction.Result(
             Spell(pos, brushBlock, item),

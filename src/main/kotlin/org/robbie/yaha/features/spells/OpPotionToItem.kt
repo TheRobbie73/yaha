@@ -15,8 +15,10 @@ import at.petrak.hexcasting.api.misc.MediaConstants
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.projectile.thrown.PotionEntity
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity
+import net.minecraft.server.network.ServerPlayerEntity
 import org.robbie.yaha.features.time_bomb.TimeBombCastEnv
 import org.robbie.yaha.features.time_bomb.TimeBombEntity
+import org.robbie.yaha.registry.YahaCriteria
 
 object OpPotionToItem : SpellAction {
     override val argc = 1
@@ -66,7 +68,11 @@ object OpPotionToItem : SpellAction {
 
         val opResult = super.operate(env, image, continuation)
 
-        return if (!isBomb) opResult else opResult.copy(newContinuation = SpellContinuation.Done)
+        return if (!isBomb) opResult else {
+            if (env.castingEntity is ServerPlayerEntity)
+                YahaCriteria.BOMB_DEFUSAL.trigger(env.castingEntity as ServerPlayerEntity)
+            opResult.copy(newContinuation = SpellContinuation.Done)
+        }
     }
 
     private data class Spell(val potion: ThrownItemEntity) : RenderedSpell {

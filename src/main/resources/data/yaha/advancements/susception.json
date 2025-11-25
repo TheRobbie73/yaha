@@ -1,0 +1,19 @@
+{
+  "parent": "hexcasting:root",
+  "display": {
+    "icon": {
+      "item": "minecraft:suspicious_sand"
+    },
+    "title": {
+      "translate": "advancements.yaha.susception.title"
+    },
+    "description": {
+      "translate": "advancements.yaha.susception.description"
+    }
+  },
+  "criteria": {
+    "collide_planes": {
+      "trigger": "yaha:susception"
+    }
+  }
+}

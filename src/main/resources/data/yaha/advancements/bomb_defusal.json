@@ -1,0 +1,20 @@
+{
+  "parent": "hexcasting:root",
+  "display": {
+    "icon": {
+      "item": "yaha:time_bomb"
+    },
+    "title": {
+      "translate": "advancements.yaha.bomb_defusal.title"
+    },
+    "description": {
+      "translate": "advancements.yaha.bomb_defusal.description"
+    },
+    "hidden": true
+  },
+  "criteria": {
+    "collide_planes": {
+      "trigger": "yaha:bomb_defusal"
+    }
+  }
+}

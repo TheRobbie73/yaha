@@ -13,6 +13,7 @@ import net.minecraft.item.Items
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.particle.ItemStackParticleEffect
 import net.minecraft.particle.ParticleTypes
+import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.hit.BlockHitResult
@@ -21,6 +22,7 @@ import net.minecraft.util.hit.HitResult
 import net.minecraft.util.math.Vec3d
 import net.minecraft.world.World
 import org.robbie.yaha.YahaUtils
+import org.robbie.yaha.registry.YahaCriteria
 import org.robbie.yaha.registry.YahaDamageTypes
 import org.robbie.yaha.registry.YahaEntities
 import java.util.UUID
@@ -119,7 +121,11 @@ class PaperPlaneEntity(
     }
 
     override fun onEntityHit(entityHitResult: EntityHitResult?) {
-        entityHitResult?.entity?.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
+        entityHitResult?.entity?.let {
+            it.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
+            if (it is PaperPlaneEntity && owner is ServerPlayerEntity)
+                YahaCriteria.COLLIDE_PLANES.trigger(owner as ServerPlayerEntity)
+        }
         shatter()
     }
 
