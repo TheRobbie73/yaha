@@ -19,9 +19,9 @@
   "hexcasting.mishap.bad_block.yaha:sussifiable": "一个有可疑变种的方块",
 
   "yaha.page.bundles.title": "纺锤与口袋",
-  "yaha.page.bundles.0": "我制造了大量的$(l:items/thought_knot)结念绳$()和$(l:items:focus)核心$()，仓储设备也已有些吃力。曾经不盈一握的线和紫水晶，一旦做成存储 iota 的物品，就变得连大箱子都难以塞下。因此，我设计了若干简单工具，用以容纳这些物品。",
+  "yaha.page.bundles.0": "我制造了大量的$(l:items/thought_knot)结念绳$()和$(l:items/focus)核心$()，仓储设备也已有些吃力。曾经不盈一握的线和紫水晶，一旦做成存储 iota 的物品，就变得连大箱子都难以塞下。因此，我设计了若干简单工具，用以容纳这些物品。",
   "yaha.page.spindle.summary": "能容纳 16 个$(l:items/thought_knot)结念绳$()的$(item)纺锤$()。$(br2)$(italic)我把各种长度的导线都放在这里啦。",
-  "yaha.page.pouch.summary": "能容纳 16 个$(l:items:focus)核心$()的$(item)口袋$()。",
+  "yaha.page.pouch.summary": "能容纳 16 个$(l:items/focus)核心$()的$(item)口袋$()。",
   "yaha.page.bundles.1": "这些工具的存放和取出操作与$(item)收纳袋$()类似。副手持纺锤或口袋右击，可将其中所有物品倒出。$(br2)似乎这些工具可以使用$(l:patterns/readwrite#hexcasting:read)$(action)书吏之精思$()读取，会随机挑选一个$(l:items/thought_knot)结念绳$()或$(l:items/focus)核心$()返回其值，所选物品未存储 iota 则返回 Null。",
 
   "yaha.page.armaments.title": "施法者的兵械库",
