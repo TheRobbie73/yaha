@@ -19,10 +19,10 @@
   "hexcasting.mishap.bad_block.yaha:sussifiable": "a block with a suspicious variant",
 
   "yaha.page.bundles.title": "Spindles and Pouches",
-  "yaha.page.bundles.0": "The $(l:items/thought_knot)Thought Knots$() and $(l:items:focus)Foci$() I've amassed have begun to put a strain on my storage. What was once a manageable handful of string or amethyst, when turned into iota-keeping devices, barely fits inside a large chest. Therefore, I have developed simple tools to bundle my work.",
+  "yaha.page.bundles.0": "The $(l:items/thought_knot)Thought Knots$() and $(l:items/focus)Foci$() I've amassed have begun to put a strain on my storage. What was once a manageable handful of string or amethyst, when turned into iota-keeping devices, barely fits inside a large chest. Therefore, I have developed simple tools to bundle my work.",
   "yaha.page.spindle.summary": "A $(item)Spindle$() with the capacity of 16 $(l:items/thought_knot)Thought Knots$().$(br2)$(italic)And here's where I keep assorted lengths of wire.",
-  "yaha.page.pouch.summary": "A $(item)Pouch$() with the capacity of 16 $(l:items:focus)Foci$().",
-  "yaha.page.bundles.1": "These act similarly to $(item)Bundles$() for the insertion and removal of items. Right-clicking with the spindle or pouch in the off-hand will eject all stored items onto the ground.$(br2)It seems these tools can also be read from with $(l:patterns/readwrite#hexcasting:read)$(action)Scribe's Reflection$(). What returns is the iota of a randomly chosen $(l:items/thought_knot)Thought Knot$() or $(l:items/focus)Focus$(), or null if the chosen item had no iota stored.",
+  "yaha.page.pouch.summary": "A $(item)Pouch$() with the capacity of 16 $(l:items/focus)Foci$().",
+  "yaha.page.bundles.1": "These act similarly to $(item)Bundles$() for the insertion and removal of items. Right-clicking with the spindle or pouch in my off-hand will eject all stored items onto the ground.$(br2)It seems these tools can also be read from with $(l:patterns/readwrite#hexcasting:read)$(action)Scribe's Reflection$(). What returns is the iota of a randomly chosen $(l:items/thought_knot)Thought Knot$() or $(l:items/focus)Focus$(), or null if the chosen item had no iota stored.",
 
   "yaha.page.armaments.title": "Caster's Armaments",
   "yaha.page.armaments.0": "I've devised a set of media-borne weaponry to improve upon my offensive Hexes in flair, if not in power.",
