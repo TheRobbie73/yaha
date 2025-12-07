@@ -4,6 +4,7 @@
   - block langs + add hint to book
   - use tag to determine small entity
   - time bomb included hehehe -> needs to save castimage
+  - dont scale if entity is smaller than 0.5
 
 # Ideas
 - spindle and pouch
