@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.math.random.Random
 import org.robbie.yaha.registry.YahaActions
 import org.robbie.yaha.registry.YahaCriteria
+import org.robbie.yaha.registry.YahaDamageTypes
 import org.robbie.yaha.registry.YahaEntities
 import org.robbie.yaha.registry.YahaItems
 
@@ -13,6 +14,7 @@ class Yaha : ModInitializer {
     override fun onInitialize() {
         YahaActions.register()
         YahaCriteria.register()
+        YahaDamageTypes.register()
         YahaEntities.register()
         YahaItems.register()
     }

@@ -1,11 +1,10 @@
 # TODO
-- mod icon
-- hexbug
-- testing with hexxy4 pack
 - Volleybomb - Have your Time Bomb get punched 10 times before it explodes.
 - anvil projectile
-  - when colliding with an entity, swap momentum
-  - deals damage to living entities proportional to relative velocity?
+  - lang stuff
+  - spell (pos -> entity)
+  - fix collision jank (especially if an entity is moving towards a stationary anvil)
+- fix particles not working all the time?
 - trident projectile
   - bounces when hitting surfaces at shallow angles
   - players can jump on it boing!!
