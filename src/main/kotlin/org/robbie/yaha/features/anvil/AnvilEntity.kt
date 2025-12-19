@@ -3,12 +3,12 @@ package org.robbie.yaha.features.anvil
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EntityPose
-import net.minecraft.entity.EntityStatuses
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.projectile.ProjectileEntity
 import net.minecraft.entity.projectile.ProjectileUtil
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.particle.ItemStackParticleEffect
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.sound.SoundEvents
@@ -39,7 +39,8 @@ class AnvilEntity(
         setPosition(pos)
     }
 
-    private var cooldown = 0
+    private var cooldown = 2
+    private var count = 3
 
     override fun tick() {
         super.tick()
@@ -50,7 +51,7 @@ class AnvilEntity(
         val hitResult = ProjectileUtil.getCollision(this, ::canHit)
         if (hitResult.type != HitResult.Type.MISS) onCollision(hitResult)
 
-        velocity = velocity.add(0.0, GRAVITY, 0.0)
+        if (!hasNoGravity()) velocity = velocity.add(0.0, GRAVITY, 0.0)
         setPosition(pos.add(velocity))
         velocity = velocity.multiply(DRAG)
 
@@ -79,32 +80,59 @@ class AnvilEntity(
         velocity = entityVelocity
         cooldown = 2
 
+        count--
+        if (count == 0) {
+            shatter()
+            return
+        }
+
+        playHitSound()
+        spawnParticles()
+    }
+
+    private fun shatter() {
+        playShatterSound()
+        spawnParticles()
+        discard()
+    }
+
+    private fun playHitSound() {
         playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.2f, 1f)
         playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 0.5f, 1f)
     }
 
-    private fun shatter() {
+    private fun playShatterSound() {
         playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.5f, 0.5f)
         playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 1f, 0.5f)
-        world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES)
-        discard()
     }
 
-    override fun handleStatus(status: Byte) {
-        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
-            val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
-            repeat(16) { world.addParticle(
-                particleParam,
-                x + Yaha.RANDOM.nextDouble() - 0.5,
-                y + Yaha.RANDOM.nextDouble() - 0.5,
-                z + Yaha.RANDOM.nextDouble() - 0.5,
-                velocity.x,
-                velocity.y,
-                velocity.z
-            ) }
-        }
+    private fun spawnParticles() {
+        val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
+        repeat(16) { world.addImportantParticle(
+            particleParam,
+            x + Yaha.RANDOM.nextDouble() - 0.5,
+            y + Yaha.RANDOM.nextDouble(),
+            z + Yaha.RANDOM.nextDouble() - 0.5,
+            velocity.x,
+            velocity.y,
+            velocity.z
+        ) }
     }
 
+    override fun writeCustomDataToNbt(nbt: NbtCompound) {
+        super.writeCustomDataToNbt(nbt)
+        nbt.putInt("Count", count)
+    }
+
+    override fun readCustomDataFromNbt(nbt: NbtCompound) {
+        super.readCustomDataFromNbt(nbt)
+        count = if (nbt.contains("Count")) {
+            nbt.getInt("Count")
+        } else 3
+    }
+
+    override fun collidesWith(other: Entity) = (other.isCollidable || other.isPushable) && !isConnectedThroughVehicle(other)
+    override fun isCollidable() = cooldown == 0
     override fun getEyeHeight(pose: EntityPose, dimensions: EntityDimensions) = height / 2
     override fun initDataTracker() {}
 }

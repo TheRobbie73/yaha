@@ -161,31 +161,31 @@ class TimeBombEntity(
         if (hex.isNotEmpty()) {
             val hexNbt = NbtList()
             hex.forEach { hexNbt.add(IotaType.serialize(it)) }
-            nbt.putList("hex", hexNbt)
+            nbt.putList("Hex", hexNbt)
         }
-        nbt.putLong("media", media)
-        nbt.putCompound("pigment", pigment.serializeToNBT())
-        nbt.putInt("lifetime", lifetime)
+        nbt.putLong("Media", media)
+        nbt.putCompound("Pigment", pigment.serializeToNBT())
+        nbt.putInt("Lifetime", lifetime)
     }
 
     override fun readCustomDataFromNbt(nbt: NbtCompound?) {
         super.readCustomDataFromNbt(nbt)
 
-        hex = if (nbt?.hasList("hex") == true && world is ServerWorld) {
-            val hexNbt = nbt.getList("hex", NbtElement.COMPOUND_TYPE)
+        hex = if (nbt?.hasList("Hex") == true && world is ServerWorld) {
+            val hexNbt = nbt.getList("Hex", NbtElement.COMPOUND_TYPE)
             hexNbt.map { IotaType.deserialize(it.asCompound, world as ServerWorld) }
         } else listOf()
 
-        media = if (nbt?.hasLong("media") == true)
-            nbt.getLong("media")
+        media = if (nbt?.hasLong("Media") == true)
+            nbt.getLong("Media")
         else 0
 
-        pigment = if (nbt?.hasCompound("pigment") == true)
-            FrozenPigment.fromNBT(nbt.getCompound("pigment"))
+        pigment = if (nbt?.hasCompound("Pigment") == true)
+            FrozenPigment.fromNBT(nbt.getCompound("Pigment"))
         else FrozenPigment.DEFAULT.get()
 
-        lifetime = if (nbt?.hasInt("lifetime") == true)
-            nbt.getInt("lifetime")
+        lifetime = if (nbt?.hasInt("Lifetime") == true)
+            nbt.getInt("Lifetime")
         else 0
     }
 
