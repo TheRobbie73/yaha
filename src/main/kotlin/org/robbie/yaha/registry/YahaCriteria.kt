@@ -19,49 +19,55 @@ object YahaCriteria {
         Criteria.register(SUSCEPTION)
         Criteria.register(BOMB_DEFUSAL)
     }
-}
 
-class CollidePlanesCriterion : AbstractCriterion<CollidePlanesCriterion.Condition>() {
-    override fun conditionsFromJson(
-        obj: JsonObject?,
-        playerPredicate: LootContextPredicate?,
-        predicateDeserializer: AdvancementEntityPredicateDeserializer?
-    ) = Condition()
+    class CollidePlanesCriterion : AbstractCriterion<CollidePlanesCriterion.Condition>() {
+        override fun conditionsFromJson(
+            obj: JsonObject?,
+            playerPredicate: LootContextPredicate?,
+            predicateDeserializer: AdvancementEntityPredicateDeserializer?
+        ) = Condition()
 
-    override fun getId() = ID
+        override fun getId() = ID
 
-    fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
+        fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
 
-    class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
-    companion object { val ID = Yaha.id("collide_planes") }
-}
+        class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
+        companion object {
+            val ID = Yaha.id("collide_planes")
+        }
+    }
 
-class SusceptionCriterion : AbstractCriterion<SusceptionCriterion.Condition>() {
-    override fun conditionsFromJson(
-        obj: JsonObject?,
-        playerPredicate: LootContextPredicate?,
-        predicateDeserializer: AdvancementEntityPredicateDeserializer?
-    ) = Condition()
+    class SusceptionCriterion : AbstractCriterion<SusceptionCriterion.Condition>() {
+        override fun conditionsFromJson(
+            obj: JsonObject?,
+            playerPredicate: LootContextPredicate?,
+            predicateDeserializer: AdvancementEntityPredicateDeserializer?
+        ) = Condition()
 
-    override fun getId() = ID
+        override fun getId() = ID
 
-    fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
+        fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
 
-    class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
-    companion object { val ID = Yaha.id("susception") }
-}
+        class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
+        companion object {
+            val ID = Yaha.id("susception")
+        }
+    }
 
-class BombDefusalCriterion : AbstractCriterion<BombDefusalCriterion.Condition>() {
-    override fun conditionsFromJson(
-        obj: JsonObject?,
-        playerPredicate: LootContextPredicate?,
-        predicateDeserializer: AdvancementEntityPredicateDeserializer?
-    ) = Condition()
+    class BombDefusalCriterion : AbstractCriterion<BombDefusalCriterion.Condition>() {
+        override fun conditionsFromJson(
+            obj: JsonObject?,
+            playerPredicate: LootContextPredicate?,
+            predicateDeserializer: AdvancementEntityPredicateDeserializer?
+        ) = Condition()
 
-    override fun getId() = ID
+        override fun getId() = ID
 
-    fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
+        fun trigger(player: ServerPlayerEntity) = trigger(player) { true }
 
-    class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
-    companion object { val ID = Yaha.id("bomb_defusal") }
+        class Condition : AbstractCriterionConditions(ID, LootContextPredicate.EMPTY)
+        companion object {
+            val ID = Yaha.id("bomb_defusal")
+        }
+    }
 }

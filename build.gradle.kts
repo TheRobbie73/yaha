@@ -32,6 +32,8 @@ loom {
             sourceSet("client")
         }
     }
+
+    accessWidenerPath = file("src/main/resources/yaha.classtweaker")
 }
 
 fabricApi {
@@ -68,7 +70,8 @@ dependencies {
         exclude(module = "emi")
     }
 
-    modLocalRuntime("dev.onyxstudios.cardinal-components-api:cardinal-components-api:${project.property("cardinal_components_version")}")
+    modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-api:${project.property("cardinal_components_version")}")
+
     modLocalRuntime("com.samsthenerd.inline:inline-fabric:${project.property("minecraft_version")}-${project.property("inline_version")}")
     modLocalRuntime("vazkii.patchouli:Patchouli:${project.property("minecraft_version")}-${project.property("patchouli_version")}-FABRIC")
     modLocalRuntime("at.petra-k.paucal:paucal-fabric-${project.property("minecraft_version")}:${project.property("paucal_version")}")
@@ -90,7 +93,9 @@ tasks.processResources {
             "version" to project.version,
             "minecraft_version" to project.property("minecraft_version"),
             "loader_version" to project.property("loader_version"),
-            "kotlin_loader_version" to project.property("kotlin_loader_version")
+            "kotlin_loader_version" to project.property("kotlin_loader_version"),
+            "hexcasting_version" to project.property("hexcasting_version"),
+            "cardinal_components_version" to project.property("cardinal_components_version")
         )
     }
 }

@@ -5,7 +5,6 @@ import at.petrak.hexcasting.api.casting.iota.IotaType
 import at.petrak.hexcasting.api.casting.iota.NullIota
 import at.petrak.hexcasting.api.item.IotaHolderItem
 import at.petrak.hexcasting.api.utils.getList
-import net.minecraft.client.item.BundleTooltipData
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.client.item.TooltipData
 import net.minecraft.entity.Entity
@@ -31,6 +30,7 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.MathHelper
 import net.minecraft.world.World
 import org.robbie.yaha.Yaha
+import org.robbie.yaha.registry.YahaCardinalComponents
 import java.util.Optional
 import java.util.function.Predicate
 import java.util.stream.Stream
@@ -67,7 +67,7 @@ class IotaHolderBundle(settings: Settings, val filter: Predicate<Item>) : Item(s
     ): Boolean {
         if (clickType != ClickType.RIGHT) return false
         if (otherStack.isEmpty) {
-            removeFirst(stack)?.let {
+            removeSelected(stack, player)?.let {
                 cursorStackReference.set(it)
                 playRemoveOneSound(player)
             }
@@ -98,7 +98,7 @@ class IotaHolderBundle(settings: Settings, val filter: Predicate<Item>) : Item(s
     override fun getTooltipData(stack: ItemStack): Optional<TooltipData> {
         val defaultedList = DefaultedList.of<ItemStack>()
         getBundledStacks(stack).forEach { defaultedList.add(it) }
-        return Optional.of(BundleTooltipData(defaultedList, getBundleOccupancy(stack)))
+        return Optional.of(IotaBundleTooltipData(defaultedList))
     }
 
     override fun appendTooltip(stack: ItemStack, world: World?, tooltip: List<Text>, context: TooltipContext) {
@@ -155,6 +155,19 @@ class IotaHolderBundle(settings: Settings, val filter: Predicate<Item>) : Item(s
         val bundleNbt = bundle.orCreateNbt
         val listNbt = bundleNbt.getList("Items", NbtElement.COMPOUND_TYPE)
         return listNbt.removeFirstOrNull()?.let { ItemStack.fromNbt(it as NbtCompound) }
+    }
+
+    /**
+     * Removes the item selected by the player and returns it.
+     * Returns null if either the bundle was empty
+     * or the player has selected outside the list of items. somehow.
+     */
+    fun removeSelected(bundle: ItemStack, player: PlayerEntity): ItemStack? {
+        val selected = YahaCardinalComponents.BUNDLE_SELECT.get(player).selected
+        val bundleNbt = bundle.orCreateNbt
+        val listNbt = bundleNbt.getList("Items", NbtElement.COMPOUND_TYPE)
+        if (selected >= listNbt.size) return null
+        return ItemStack.fromNbt(listNbt.removeAt(selected) as NbtCompound)
     }
 
     /**
