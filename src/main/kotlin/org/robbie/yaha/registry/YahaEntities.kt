@@ -6,6 +6,7 @@ import net.minecraft.entity.SpawnGroup
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import org.robbie.yaha.Yaha
+import org.robbie.yaha.features.anvil.AnvilEntity
 import org.robbie.yaha.features.paper_plane.PaperPlaneEntity
 import org.robbie.yaha.features.time_bomb.TimeBombEntity
 
@@ -20,9 +21,15 @@ object YahaEntities {
         .setDimensions(0.75f, 0.75f)
         .build(Yaha.MOD_ID + ":time_bomb")
 
+    val ANVIL_ENTITY: EntityType<AnvilEntity> = EntityType.Builder
+        .create(::AnvilEntity, SpawnGroup.MISC)
+        .setDimensions(1f, 1f)
+        .build(Yaha.MOD_ID + ":anvil")
+
     fun register() {
         register("paper_plane", PAPER_PLANE_ENTITY)
         register("time_bomb", TIME_BOMB_ENTITY)
+        register("anvil", ANVIL_ENTITY)
     }
 
     private fun register(name: String, entityType: EntityType<out Entity>) {

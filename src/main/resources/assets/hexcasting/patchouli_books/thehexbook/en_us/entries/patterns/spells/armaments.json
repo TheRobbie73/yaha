@@ -43,6 +43,15 @@
       "input": "",
       "output": "vector",
       "text": "yaha.page.time_bomb_pos.summary"
-    }
+    },
+    {
+      "type": "hexcasting:pattern",
+      "op_id": "yaha:anvil",
+      "anchor": "yaha:anvil",
+      "input": "vec",
+      "output": "entity",
+      "text": "yaha.page.anvil.summary"
+    },
+    "yaha.page.anvil.0"
   ]
 }

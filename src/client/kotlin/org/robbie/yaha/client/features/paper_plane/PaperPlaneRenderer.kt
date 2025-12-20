@@ -7,7 +7,6 @@ import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.EntityRenderer
 import net.minecraft.client.render.entity.EntityRendererFactory
 import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.util.Identifier
 import net.minecraft.util.math.MathHelper
 import net.minecraft.util.math.RotationAxis
 import org.joml.Matrix3f
@@ -17,15 +16,13 @@ import org.robbie.yaha.features.paper_plane.PaperPlaneEntity
 
 class PaperPlaneRenderer(context: EntityRendererFactory.Context) : EntityRenderer<PaperPlaneEntity>(context) {
     override fun render(
-        entity: PaperPlaneEntity?,
+        entity: PaperPlaneEntity,
         yaw: Float,
         tickDelta: Float,
-        matrices: MatrixStack?,
-        vertexConsumers: VertexConsumerProvider?,
+        matrices: MatrixStack,
+        vertexConsumers: VertexConsumerProvider,
         light: Int
     ) {
-        if (entity == null || matrices == null || vertexConsumers == null) return
-
         matrices.push()
         matrices.multiply(RotationAxis.NEGATIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.yaw)))
         matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevPitch, entity.pitch)))
@@ -80,5 +77,5 @@ class PaperPlaneRenderer(context: EntityRendererFactory.Context) : EntityRendere
             .next()
     }
 
-    override fun getTexture(entity: PaperPlaneEntity?): Identifier? = Yaha.id("textures/entity/paper_plane.png")
+    override fun getTexture(entity: PaperPlaneEntity) = Yaha.id("textures/entity/paper_plane.png")
 }

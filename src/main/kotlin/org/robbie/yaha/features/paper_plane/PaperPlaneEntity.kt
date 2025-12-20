@@ -84,9 +84,9 @@ class PaperPlaneEntity(
     override fun canHit(entity: Entity) = super.canHit(entity) && (entity !is PaperPlaneEntity || target == entity)
     override fun canHit() = true
 
-    override fun damage(source: DamageSource?, amount: Float): Boolean {
+    override fun damage(source: DamageSource, amount: Float): Boolean {
         if (isInvulnerableTo(source)) return false
-        val entity = source?.attacker
+        val entity = source.attacker
 
         if (entity == null) return false
 
@@ -116,16 +116,16 @@ class PaperPlaneEntity(
         targetUUID = entity?.uuid
     }
 
-    override fun onBlockHit(blockHitResult: BlockHitResult?) {
+    override fun onBlockHit(blockHitResult: BlockHitResult) {
         shatter()
     }
 
-    override fun onEntityHit(entityHitResult: EntityHitResult?) {
-        entityHitResult?.entity?.let {
-            it.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
-            if (it is PaperPlaneEntity && owner is ServerPlayerEntity)
-                YahaCriteria.COLLIDE_PLANES.trigger(owner as ServerPlayerEntity)
-        }
+    override fun onEntityHit(entityHitResult: EntityHitResult) {
+        val entity = entityHitResult.entity
+        entity.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
+        if (entity is PaperPlaneEntity && owner is ServerPlayerEntity)
+            YahaCriteria.COLLIDE_PLANES.trigger(owner as ServerPlayerEntity)
+
         shatter()
     }
 
@@ -143,20 +143,20 @@ class PaperPlaneEntity(
         }
     }
 
-    override fun writeCustomDataToNbt(nbt: NbtCompound?) {
+    override fun writeCustomDataToNbt(nbt: NbtCompound) {
         super.writeCustomDataToNbt(nbt)
-        targetUUID?.let { nbt?.putUuid("Target", it) }
+        targetUUID?.let { nbt.putUuid("Target", it) }
     }
 
-    override fun readCustomDataFromNbt(nbt: NbtCompound?) {
+    override fun readCustomDataFromNbt(nbt: NbtCompound) {
         super.readCustomDataFromNbt(nbt)
-        if (nbt?.containsUuid("Target") == true) {
+        if (nbt.containsUuid("Target")) {
             targetUUID = nbt.getUuid("Target")
             target = null
         }
     }
 
-    override fun getEyeHeight(pose: EntityPose?, dimensions: EntityDimensions?) = height / 2
+    override fun getEyeHeight(pose: EntityPose, dimensions: EntityDimensions) = height / 2
     override fun hasNoGravity() = true
     override fun initDataTracker() {}
 }
