@@ -18,6 +18,9 @@
     ],
     "main": [
       "org.robbie.yaha.Yaha"
+    ],
+    "cardinal-components": [
+      "org.robbie.yaha.registry.YahaCardinalComponents"
     ]
   },
   "mixins": [
@@ -32,6 +35,14 @@
     "fabric-language-kotlin": ">=${kotlin_loader_version}",
     "fabric": "*",
     "minecraft": "${minecraft_version}",
-    "hexcasting": ">=${hexcasting_version}"
+    "hexcasting": ">=${hexcasting_version}",
+    "cardinal-components-base": "~${cardinal_components_version}",
+    "cardinal-components-entity": "~${cardinal_components_version}"
+  },
+  "accessWidener": "yaha.classtweaker",
+  "custom": {
+    "cardinal-components": [
+      "yaha:bundle_select"
+    ]
   }
 }
