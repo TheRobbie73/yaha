@@ -7,6 +7,8 @@ import org.robbie.yaha.registry.YahaActions
 import org.robbie.yaha.registry.YahaCriteria
 import org.robbie.yaha.registry.YahaEntities
 import org.robbie.yaha.registry.YahaItems
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class Yaha : ModInitializer {
 
@@ -20,6 +22,7 @@ class Yaha : ModInitializer {
     companion object {
         const val MOD_ID: String = "yaha"
         val RANDOM: Random = Random.create() // if world.random cannot be used
+        val LOGGER: Logger = LoggerFactory.getLogger(MOD_ID)
         fun id(string: String) = Identifier(MOD_ID, string)
     }
 }
