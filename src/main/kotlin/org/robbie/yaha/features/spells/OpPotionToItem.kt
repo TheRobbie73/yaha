@@ -13,6 +13,7 @@ import at.petrak.hexcasting.api.casting.iota.Iota
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadEntity
 import at.petrak.hexcasting.api.misc.MediaConstants
 import net.minecraft.entity.ItemEntity
+import net.minecraft.entity.projectile.thrown.ExperienceBottleEntity
 import net.minecraft.entity.projectile.thrown.PotionEntity
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity
 import net.minecraft.server.network.ServerPlayerEntity
@@ -31,6 +32,7 @@ object OpPotionToItem : SpellAction {
 
         if (
             entity !is PotionEntity &&
+            entity !is ExperienceBottleEntity &&
             entity !is TimeBombEntity ||
             entity.owner != env.castingEntity
         ) throw MishapBadEntity.of(entity, "yaha:potion")
