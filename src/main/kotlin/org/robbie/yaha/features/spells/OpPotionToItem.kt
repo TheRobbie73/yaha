@@ -29,12 +29,10 @@ object OpPotionToItem : SpellAction {
     ): SpellAction.Result {
         val entity = args.getEntity(0, argc)
 
-        // a time bomb can disarm itself and only itself
         if (
             entity !is PotionEntity &&
             entity !is TimeBombEntity ||
-            env is TimeBombCastEnv &&
-            entity != env.getBomb()
+            entity.owner != env.castingEntity
         ) throw MishapBadEntity.of(entity, "yaha:potion")
 
         env.assertEntityInRange(entity)
@@ -49,7 +47,7 @@ object OpPotionToItem : SpellAction {
     /**
      * Easter Egg Specification:
      * Normally, this spell takes a PotionEntity and replaces it with an ItemEntity of the same potion.
-     * However, if a Time Bomb were to cast this spell on itself (it must be cast by itself and on itself),
+     * However, if one were to cast it on a Time Bomb (that they own),
      * it should drop itself as an item AND end it's running hex (like Janus from Overevaluate).
      */
     override fun operate(
@@ -60,19 +58,21 @@ object OpPotionToItem : SpellAction {
         // jank levels spiking!!
         val stackTop = image.stack.lastOrNull()
         val isBomb = (
-                env is TimeBombCastEnv &&
                 stackTop is EntityIota &&
-                stackTop.entity is TimeBombEntity &&
+                stackTop.entity is TimeBombEntity
+                )
+        val isSelfCast = (
+                isBomb &&
+                env is TimeBombCastEnv &&
                 env.getBomb() == stackTop.entity
                 )
 
         val opResult = super.operate(env, image, continuation)
 
-        return if (!isBomb) opResult else {
-            if (env.castingEntity is ServerPlayerEntity)
-                YahaCriteria.BOMB_DEFUSAL.trigger(env.castingEntity as ServerPlayerEntity)
-            opResult.copy(newContinuation = SpellContinuation.Done)
-        }
+        if (env.castingEntity is ServerPlayerEntity && isBomb)
+            YahaCriteria.BOMB_DEFUSAL.trigger(env.castingEntity as ServerPlayerEntity)
+
+        return if (!isSelfCast) opResult else opResult.copy(newContinuation = SpellContinuation.Done)
     }
 
     private data class Spell(val potion: ThrownItemEntity) : RenderedSpell {
@@ -80,7 +80,7 @@ object OpPotionToItem : SpellAction {
             val pos = potion.pos
             val vel = potion.velocity
             val item = potion.stack
-            if (potion !is TimeBombEntity) potion.discard()
+            potion.discard()
             val itemEntity = ItemEntity(
                 env.world,
                 pos.x, pos.y, pos.z,
