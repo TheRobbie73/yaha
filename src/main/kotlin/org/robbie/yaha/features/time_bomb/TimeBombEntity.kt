@@ -29,6 +29,7 @@ import net.minecraft.nbt.NbtList
 import net.minecraft.particle.ItemStackParticleEffect
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.HitResult
@@ -102,30 +103,26 @@ class TimeBombEntity(
             castingVM.queueExecuteAndWrapIotas(hex, world as ServerWorld)
         }
 
-        playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 1.0f, 0.5f)
-        world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES)
-        discard()
-    }
-
-    override fun handleStatus(status: Byte) {
-        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
+        (world as? ServerWorld)?.let {
+            it.playSound(
+                null,
+                x, y, z,
+                SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.PLAYERS,
+                1.0f, 0.5f
+            )
             val particleParam = ItemStackParticleEffect(
                 ParticleTypes.ITEM,
                 ItemStack(Items.AMETHYST_BLOCK, 1)
             )
-
-            repeat(8) { // im only using this because the ide complains about unused var in for loop
-                world.addParticle(
-                    particleParam,
-                    x,
-                    y,
-                    z,
-                    world.random.nextDouble() - 0.5,
-                    world.random.nextDouble() - 0.5,
-                    world.random.nextDouble() - 0.5
-                )
-            }
+            it.spawnParticles(
+                particleParam,
+                x, y, z,
+                16,
+                0.0, 0.0, 0.0,
+                0.5
+            )
         }
+        discard()
     }
 
     override fun canHit(entity: Entity?) = false

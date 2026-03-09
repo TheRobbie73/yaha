@@ -11,6 +11,8 @@ import net.minecraft.item.Items
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.particle.ItemStackParticleEffect
 import net.minecraft.particle.ParticleTypes
+import net.minecraft.server.world.ServerWorld
+import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
@@ -114,21 +116,33 @@ class AnvilEntity(
     }
 
     private fun playShatterSound() {
-        playSound(SoundEvents.BLOCK_ANVIL_LAND, 0.5f, 0.5f)
-        playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 1f, 0.5f)
+        (world as? ServerWorld)?.let {
+            it.playSound(
+                null,
+                x, y, z,
+                SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.PLAYERS,
+                1f, 0.5f
+            )
+            it.playSound(
+                null,
+                x, y, z,
+                SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS,
+                0.5f, 0.5f
+            )
+        }
     }
 
     private fun spawnParticles() {
-        val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
-        repeat(16) { world.addParticle(
-            particleParam,
-            x + Yaha.RANDOM.nextDouble() - 0.5,
-            y + Yaha.RANDOM.nextDouble(),
-            z + Yaha.RANDOM.nextDouble() - 0.5,
-            velocity.x,
-            velocity.y,
-            velocity.z
-        ) }
+        (world as? ServerWorld)?.let {
+            val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
+            it.spawnParticles(
+                particleParam,
+                x, y + 0.5, z,
+                16,
+                0.2, 0.2, 0.2,
+                0.1
+            )
+        }
     }
 
     override fun writeCustomDataToNbt(nbt: NbtCompound) {

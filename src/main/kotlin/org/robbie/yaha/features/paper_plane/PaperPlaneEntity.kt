@@ -15,6 +15,7 @@ import net.minecraft.particle.ItemStackParticleEffect
 import net.minecraft.particle.ParticleTypes
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
+import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvents
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.hit.EntityHitResult
@@ -130,17 +131,23 @@ class PaperPlaneEntity(
     }
 
     private fun shatter() {
-        playSound(SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, 0.25f, 1.5f) // sounds seem to work in here but not in handleStatus()
-        world.sendEntityStatus(this, EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES)
-        discard()
-    }
-
-    override fun handleStatus(status: Byte) {
-        if (status == EntityStatuses.PLAY_DEATH_SOUND_OR_ADD_PROJECTILE_HIT_PARTICLES) {
-            // particles seem to work in here but not in shatter()
+        (world as? ServerWorld)?.let {
+            it.playSound(
+                null,
+                x, y, z,
+                SoundEvents.BLOCK_AMETHYST_BLOCK_BREAK, SoundCategory.PLAYERS,
+                0.25f, 1.5f
+            )
             val particleParam = ItemStackParticleEffect(ParticleTypes.ITEM, ItemStack(Items.AMETHYST_BLOCK, 1))
-            repeat(8) { world.addParticle(particleParam, x, y, z, 0.0, 0.0, 0.0) }
+            it.spawnParticles(
+                particleParam,
+                x, y, z,
+                8,
+                0.0, 0.0, 0.0,
+                0.1
+            )
         }
+        discard()
     }
 
     override fun writeCustomDataToNbt(nbt: NbtCompound) {
