@@ -123,7 +123,7 @@ class PaperPlaneEntity(
 
     override fun onEntityHit(entityHitResult: EntityHitResult) {
         val entity = entityHitResult.entity
-        entity.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 2f)
+        entity.damage(world.damageSources.create(YahaDamageTypes.PAPER_PLANE, this, owner), 6f)
         if (entity is PaperPlaneEntity && owner is ServerPlayerEntity)
             YahaCriteria.COLLIDE_PLANES.trigger(owner as ServerPlayerEntity)
 

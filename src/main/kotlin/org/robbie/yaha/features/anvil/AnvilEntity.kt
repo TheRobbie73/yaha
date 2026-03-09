@@ -84,7 +84,7 @@ class AnvilEntity(
         playHitSound()
         spawnParticles()
 
-        val damage = 10 - 10 * (velocity.lengthSquared() / 5 + 1).pow(-2)
+        val damage = 20 - 20 * (velocity.lengthSquared() / 15 + 1).pow(-2)
         if (entity !is ProjectileEntity) {
             entity.damage(world.damageSources.create(
                 YahaDamageTypes.ANVIL,
