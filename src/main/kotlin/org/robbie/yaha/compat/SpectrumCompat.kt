@@ -16,9 +16,7 @@ object SpectrumCompat {
             Entity::isAlive
         ).forEach { entity -> AnvilCrusher.crush(
             entity,
-            ceil(5 * anvil.velocity.lengthSquared() - 1)
-                .toFloat()
-                .coerceAtMost(40f)
+            ceil(20 * anvil.velocity.length()).toFloat()
         ) }
     }
 }
