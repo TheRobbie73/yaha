@@ -84,6 +84,8 @@ dependencies {
     // interop
     modCompileOnly("de.dafuqs:spectrum:${project.property("spectrum_version")}")
     // modLocalRuntime("de.dafuqs:spectrum:${project.property("spectrum_version")}")
+    modCompileOnly("maven.modrinth:mouse-tweaks:${project.property("mouse_tweaks_version")}")
+    modLocalRuntime("maven.modrinth:mouse-tweaks:${project.property("mouse_tweaks_version")}")
 
     // other mod testing
     modLocalRuntime("maven.modrinth:hexcassettes:1.1.4")
@@ -104,7 +106,8 @@ tasks.processResources {
             "kotlin_loader_version" to project.property("kotlin_loader_version"),
             "hexcasting_version" to project.property("hexcasting_version"),
             "cardinal_components_version" to project.property("cardinal_components_version"),
-            "spectrum_version" to project.property("spectrum_version")
+            "spectrum_version" to project.property("spectrum_version"),
+            "mouse_tweaks_version" to project.property("mouse_tweaks_version")
         )
     }
 }
