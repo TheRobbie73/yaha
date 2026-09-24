@@ -75,9 +75,9 @@ dependencies {
     }
 
     modImplementation("dev.onyxstudios.cardinal-components-api:cardinal-components-api:${project.property("cardinal_components_version")}")
+    modImplementation("vazkii.patchouli:Patchouli:${project.property("minecraft_version")}-${project.property("patchouli_version")}-FABRIC")
 
     modLocalRuntime("com.samsthenerd.inline:inline-fabric:${project.property("minecraft_version")}-${project.property("inline_version")}")
-    modLocalRuntime("vazkii.patchouli:Patchouli:${project.property("minecraft_version")}-${project.property("patchouli_version")}-FABRIC")
     modLocalRuntime("at.petra-k.paucal:paucal-fabric-${project.property("minecraft_version")}:${project.property("paucal_version")}")
     modLocalRuntime(files("${rootProject.rootDir}/libs/serialization-hooks-0.4.99999.jar"))
 

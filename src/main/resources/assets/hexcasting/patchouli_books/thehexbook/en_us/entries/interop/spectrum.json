@@ -1,0 +1,10 @@
+{
+  "name": "yaha.page.interop.spectrum.title",
+  "icon": "spectrum:amethyst_powder",
+  "category": "hexcasting:interop",
+  "advancement": "hexcasting:root",
+  "flag": "mod:spectrum",
+  "pages": [
+    "yaha.page.interop.spectrum.0"
+  ]
+}
