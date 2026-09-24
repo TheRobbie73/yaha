@@ -37,7 +37,8 @@
     "minecraft": "${minecraft_version}",
     "hexcasting": ">=${hexcasting_version}",
     "cardinal-components-base": "~${cardinal_components_version}",
-    "cardinal-components-entity": "~${cardinal_components_version}"
+    "cardinal-components-entity": "~${cardinal_components_version}",
+    "patchouli": ">=${minecraft_version}-${patchouli_version}"
   },
   "custom": {
     "cardinal-components": [
