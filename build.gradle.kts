@@ -107,7 +107,8 @@ tasks.processResources {
             "hexcasting_version" to project.property("hexcasting_version"),
             "cardinal_components_version" to project.property("cardinal_components_version"),
             "spectrum_version" to project.property("spectrum_version"),
-            "mouse_tweaks_version" to project.property("mouse_tweaks_version")
+            "mouse_tweaks_version" to project.property("mouse_tweaks_version"),
+            "patchouli_version" to project.property("patchouli_version")
         )
     }
 }
