@@ -85,7 +85,7 @@ dependencies {
     modCompileOnly("de.dafuqs:spectrum:${project.property("spectrum_version")}")
     // modLocalRuntime("de.dafuqs:spectrum:${project.property("spectrum_version")}")
     modCompileOnly("maven.modrinth:mouse-tweaks:${project.property("mouse_tweaks_version")}")
-    modLocalRuntime("maven.modrinth:mouse-tweaks:${project.property("mouse_tweaks_version")}")
+    // modLocalRuntime("maven.modrinth:mouse-tweaks:${project.property("mouse_tweaks_version")}")
 
     // other mod testing
     modLocalRuntime("maven.modrinth:hexcassettes:1.1.4")
