@@ -36,8 +36,8 @@ object OpPotionToItem : SpellAction {
             entity !is PotionEntity &&
             entity !is EggEntity &&
             entity !is ExperienceBottleEntity &&
-            entity !is TimeBombEntity ||
-            entity.owner != env.castingEntity
+            (entity !is TimeBombEntity ||
+            entity.owner != env.castingEntity)
         ) throw MishapBadEntity.of(entity, "yaha:potion")
 
         env.assertEntityInRange(entity)
